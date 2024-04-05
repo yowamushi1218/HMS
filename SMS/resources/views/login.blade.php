@@ -2,7 +2,7 @@
 @section('content')
 <section id="login-user">
     <div class="d-flex justify-content-center mt-4">
-        <h1 class="text-center mb-1" style="color:rgb(255, 255, 255); font-weight: bold; font-size: 70px; text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);">AIFCP</h1>
+        <h1 class="text-center mb-1" style="color:rgb(255, 255, 255); font-weight: bold; font-size: 70px; text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);">S.M.S</h1>
     </div>
     <div class="login-page">
     <div class="form">
