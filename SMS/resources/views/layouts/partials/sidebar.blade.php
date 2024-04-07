@@ -1,11 +1,11 @@
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
         <div class="navbar-header">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="/"><strong>BNHS</strong></a>
-            <a class="navbar-brand hidden" href="{{ route('schedules') }}"><strong>S</strong></a>
+            <a class="navbar-brand hidden mr-1" href="{{ route('schedules') }}"><img src="{{ asset('assets/dashboard/images/fav-logo.png') }}" alt="Logo"></a>
+            <a class="navbar-brand" href="/"><img src="{{ asset('assets/dashboard/images/fav-logo.png') }}" alt="Logo" width="30">&nbsp;<strong>BNHS</strong></a>
         </div>
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -13,7 +13,7 @@
                     <li class="active">
                         <a href="{{ route('dashboard') }}"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
                     </li>
-                    <li class="#">
+                    <li class="active">
                         <a href="#"> <i class="menu-icon fa fa-home"></i>Home </a>
                     </li>
                     <li class="active">

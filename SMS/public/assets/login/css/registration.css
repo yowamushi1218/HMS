@@ -101,7 +101,7 @@ form .fields .input-field{
 .input-field input[type="date"]:valid{
     color: #333;
 }
-.container form button, .backBtn{
+.container form .nextBtn, .backBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@ form .fields .input-field{
     color: #fff;
     border-radius: 5px;
     margin: 25px 0;
-    background-color: #4070f4;
+    background-color: #FF007F;
     transition: all 0.3s linear;
     cursor: pointer;
 }
@@ -122,9 +122,10 @@ form .fields .input-field{
     font-weight: 400;
 }
 form button:hover{
-    background-color: #265df2;
+    background-color: #d4006a;
 }
 form button i,
+form .nextBtn i,
 form .backBtn i{
     margin: 0 6px;
 }
@@ -135,7 +136,7 @@ form .buttons{
     display: flex;
     align-items: center;
 }
-form .buttons button , .backBtn{
+form .buttons .nextBtn , .backBtn{
     margin-right: 14px;
 }
 @media (max-width: 750px) {

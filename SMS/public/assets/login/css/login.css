@@ -78,13 +78,26 @@ a{
     justify-content: center;
 }
 
+.input-field {
+    position: relative;
+}
+
+.input-field .icon {
+    position: absolute;
+    left: 15px;
+    top: 70%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+}
+
 .input-field input {
     font-size: 14px;
     font-weight: 400;
     color: #333;
     border-radius: 5px;
     border: 1px solid #aaa;
-    padding: 0 15px;
+    padding: 10px 10px 10px 40px;
     height: 42px;
     width: 100%;
 }
@@ -104,7 +117,7 @@ a{
     color: #fff;
     border-radius: 5px;
     margin: 20px 0;
-    background-color: #4070f4;
+    background-color: #FF007F;
     transition: all 0.3s linear;
     cursor: pointer;
 }
@@ -115,7 +128,7 @@ a{
 }
 
 form button:hover {
-    background-color: #265df2;
+    background-color: #d4006a;
 }
 
 form button i {

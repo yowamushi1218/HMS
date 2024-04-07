@@ -1001,18 +1001,18 @@ textarea {
   width: 100%; }
 
 aside.left-panel {
-  background: #EA3788;
+  background: #FF66B3;
   display: table-cell;
   height: 100vh;
   min-height: 100%;
-  padding: 0 25px;
+  padding: 0 30px;
   vertical-align: top;
-  width: 220px;
+  width: 250px;
   -webkit-transition:width 0.3s ease;
   transition: width 0.3s ease; }
 
 .navbar {
-  background: #EA3788;
+  background: #FF66B3;
   border-radius: 0;
   border: none;
   display: block;
@@ -1026,7 +1026,7 @@ aside.left-panel {
     border-bottom: 1px solid #ffffff58;
     color: #f1f2f7 !important;
     font-family: 'Open Sans';
-    font-size: 22px;
+    font-size: 20px;
     float: none;
     line-height: 50px;
     margin: 0;
@@ -1053,7 +1053,7 @@ aside.left-panel {
       display: none; }
   .navbar .menu-title {
     border-bottom: 1px solid #ffffff58;
-    color: #9496a1;
+    color: #ffffff;
     clear: both;
     display: block;
     font-family: 'Open Sans';
@@ -1122,7 +1122,7 @@ aside.left-panel {
           .navbar .navbar-nav li.menu-item-has-children a:hover:before {
             color: #fff; }
         .navbar .navbar-nav li.menu-item-has-children .sub-menu {
-          background: #EA3788;
+          background: #FF66B3;
           border: none;
           box-shadow: none;
           overflow-y: hidden;
@@ -1296,7 +1296,7 @@ body.open .navbar .navbar-brand.hidden {
       content: "/\00a0"; }
 
 .right-panel header.header {
-  background: #EA3788;
+  background: #FF66B3;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   clear: both;
   display: inline-block;
@@ -1307,7 +1307,7 @@ body.open .navbar .navbar-brand.hidden {
   margin-left: -210px; }
 
 header.fixed-top {
-  background: #EA3788;
+  background: #FF66B3;
   padding: 5px; }
 
 .header-menu .col-sm-7 {
@@ -1478,7 +1478,7 @@ header .form-inline {
     top: 55px !important;
     margin: 0;
     max-width: 150px;
-    padding: 10px 35px;
+    padding: 5px 25px;
     position: absolute;
     width: 100%;
     z-index: 999;

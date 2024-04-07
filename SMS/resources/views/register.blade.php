@@ -6,7 +6,8 @@
             <a class="login-link" href="login" title="Back to Login"><i class="fa fa-arrow-left"></i></a> &nbsp;
             <a class="register-link">Registration</a>
         </header>
-        <form action="#">
+        <form method="POST" action="add_register">
+            @csrf
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Student Details</span>
@@ -21,7 +22,7 @@
                         </div>
                         <div class="input-field">
                             <label>Email</label>
-                            <input type="text" name="user_phone" placeholder="Enter your email" required>
+                            <input type="text" name="user_email" placeholder="Enter your email" required>
                         </div>
                         <div class="input-field">
                             <label>Mobile Number</label>
@@ -37,7 +38,43 @@
                         </div>
                         <div class="input-field">
                             <label>Course</label>
-                            <input type="text" name="user_course" placeholder="Enter your course" required>
+                            <select name="user_course" required>
+                                <option disabled selected>Select courses</option>
+                                <option value="ABH">Bachelor of Arts in History</option>
+                                <option value="ABP">Bachelor of Arts in Philosophy</option>
+                                <option value="BFAID">Bachelor of Fine Arts Major in Industrial Design</option>
+                                <option value="BFAP">Bachelor of Fine Arts Major in Painting</option>
+                                <option value="BFAVC">Bachelor of Fine Arts Major in Visual Communication</option>
+                                <option value="ABE">Bachelor of Arts in Economics</option>
+                                <option value="BSE">Bachelor of Science in Economics</option>
+                                <option value="ABPhys">Bachelor of Arts in Psychology</option>
+                                <option value="BSCrim">Bachelor of Science in Criminology </option>
+                                <option value="ABPolSci">Bachelor of Arts in Political Science</option>
+                                <option value="ABEnglish">Bachelor of Arts in English</option>
+                                <option value="BSIT">Bachelor of Science Major in Information Technology</option>
+                                <option value="BSComSci">Bachelor of Science Major in Computer Science</option>
+                                <option value="BSIS">Bachelor of Science in Information Systems</option>
+                                <option value="BSM">Bachelor of Science in Mathematics</option>
+                                <option value="BSStat">Bachelor of Science in Statistics</option>
+                                <option value="BSAgri">Bachelor of Science in Agriculture</option>
+                                <option value="BSArchi">Bachelor of Science in Architecture </option>
+                                <option value="BSID">Bachelor of Science in Interior Design </option>
+                                <option value="BSA">Bachelor of Science in Accountancy</option>
+                                <option value="BSAcT">Bachelor of Science in Accounting Technology</option>
+                                <option value="BSBA">Bachelor of Science in Business Administration</option>
+                                <option value="BSHRM">Bachelor of Science in Hotel and Restaurant Management</option>
+                                <option value="BSEntrep">Bachelor of Science in Entrepreneurship</option>
+                                <option value="BSRem">Bachelor of Science in Real Estate Management</option>
+                                <option value="BSTM">Bachelor of Science in Tourism Management</option>
+                                <option value="BSMedTech">Bachelor of Science in Medical Technology</option>
+                                <option value="BSMidWife">Bachelor of Science in Midwifery</option>
+                                <option value="BSN">Bachelor of Science in Nursing</option>
+                                <option value="BSP">Bachelor of Science in Pharmacy </option>
+                                <option value="BSED">Bachelor in Secondary Education</option>
+                                <option value="BPE">Bachelor of Physical Education</option>
+                                <option value="BSChe">Bachelor of Science in Chemical Engineering</option>
+                                <option value="BSCE">Bachelor of Science in Civil Engineering</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -68,6 +105,8 @@
                             <label>Lot Number</label>
                             <input type="number" name="user_lotno" placeholder="Enter lot number" required>
                         </div>
+                        <input type="hidden" name="user_is_active">
+                        <input type="hidden" name="user_created_at">
                     </div>
                     <button class="nextBtn">
                         <span class="btnText">Next</span>
@@ -114,7 +153,7 @@
                         </div>
                         <div class="input-field">
                             <label>Mother Contact Number</label>
-                            <input type="number" placeholder="Enter mother contact number" required>
+                            <input type="number" name="mother_phoneno" placeholder="Enter mother contact number" required>
                         </div>
                         <div class="input-field">
                             <label>Home Address</label>
@@ -138,7 +177,7 @@
                             <i class="fa fa-arrow-right"></i>
                             <span class="btnText">Back</span>
                         </div>
-                        <button class="sumbit">
+                        <button class="submit">
                             <span class="btnText">Submit</span>
                             <i class="fa fa-paper-plane"></i>
                         </button>
