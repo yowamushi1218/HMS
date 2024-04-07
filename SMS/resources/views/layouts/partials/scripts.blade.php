@@ -1,10 +1,8 @@
 <!-- Home -->
 <script src="{{ asset('assets/dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/vendors/popper.js/dist/umd/popper.min.js') }}"></script>
 
 <script src="{{ asset('assets/dashboard/js/main.js') }}"></script>
-<script src="{{ asset('assets/dashboard/vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/dashboard.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/widgets.js') }}"></script>
 <script src="{{ asset('assets/dashboard/vendors/jqvmap/dist/jquery.vmap.min.js') }}"></script>
@@ -24,6 +22,10 @@
 <script src="{{ asset('assets/dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/vendors/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/init-scripts/data-table/datatables-init.js') }}"></script>
+
+<!--  Chart js -->
+<script src="{{ asset('assets/dashboard/js/init-scripts/chart-js/chartjs-init.js') }}"></script>
+<script src="{{ asset('assets/dashboard/vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
 
 <script>
     (function($) {

@@ -19,8 +19,17 @@ Route::get('/', function () {
     return view('login');
 });
 
+//Dashboard
+Route::post('dashboard', [CustomController::class, 'main'])->name('dashboard');
+Route::get('dashboard', [CustomController::class, 'main'])->name('dashboard');
+
+//Login-Register
+Route::get('register', [CustomController::class, 'registration'])->name('register');
+Route::get('login', [CustomController::class, 'login'])->name('login');
+
+//Class Shedules
 Route::post('schedules',[CustomController::class,'class']);
-Route::get('schedules', [CustomController::class, 'class'])->name('home');
+Route::get('schedules', [CustomController::class, 'class'])->name('schedules');
 Route::get('/manage', [CustomController::class, 'manage'])->name('manage');
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}">
     <head>
         @include('layouts.partials.head')
     </head>

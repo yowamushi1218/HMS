@@ -7,7 +7,7 @@
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user-info">
-                            <img class="user-avatar rounded-circle" src="{{ asset('assets/dashboard/images/admin.jpg') }}" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="{{ asset('assets/dashboard/images/human.png') }}" alt="User Avatar">
                             <span class="user-name mr-2">John Doe</span>
                             <i class="fa fa-angle-down" style="color: white"></i>
                         </div>

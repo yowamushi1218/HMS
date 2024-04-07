@@ -15,4 +15,17 @@ class CustomController extends Controller
     {
         return view('manage');
     }
+
+    public function main()
+    {
+        return view('dashboard');
+    }
+    public function registration()
+    {
+        return view('register');
+    }
+    public function login()
+    {
+        return view('login');
+    }
 }

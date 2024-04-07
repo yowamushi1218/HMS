@@ -4,14 +4,14 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="/"><strong>S.M.S</strong></a>
-            <a class="navbar-brand hidden" href="{{ route('home') }}"><strong>S</strong></a>
+            <a class="navbar-brand" href="/"><strong>BNHS</strong></a>
+            <a class="navbar-brand hidden" href="{{ route('schedules') }}"><strong>S</strong></a>
         </div>
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <h4 class="menu-title mt-3">Dashboard</h4>
-                    <li class="#">
-                        <a href="#"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
+                    <li class="active">
+                        <a href="{{ route('dashboard') }}"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
                     </li>
                     <li class="#">
                         <a href="#"> <i class="menu-icon fa fa-home"></i>Home </a>

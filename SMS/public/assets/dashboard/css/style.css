@@ -1001,7 +1001,7 @@ textarea {
   width: 100%; }
 
 aside.left-panel {
-  background: #2B4864;
+  background: #EA3788;
   display: table-cell;
   height: 100vh;
   min-height: 100%;
@@ -1012,7 +1012,7 @@ aside.left-panel {
   transition: width 0.3s ease; }
 
 .navbar {
-  background: #2B4864;
+  background: #EA3788;
   border-radius: 0;
   border: none;
   display: block;
@@ -1122,7 +1122,7 @@ aside.left-panel {
           .navbar .navbar-nav li.menu-item-has-children a:hover:before {
             color: #fff; }
         .navbar .navbar-nav li.menu-item-has-children .sub-menu {
-          background: #2B4864;
+          background: #EA3788;
           border: none;
           box-shadow: none;
           overflow-y: hidden;
@@ -1296,7 +1296,7 @@ body.open .navbar .navbar-brand.hidden {
       content: "/\00a0"; }
 
 .right-panel header.header {
-  background: #2B4864;
+  background: #EA3788;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   clear: both;
   display: inline-block;
@@ -1307,7 +1307,7 @@ body.open .navbar .navbar-brand.hidden {
   margin-left: -210px; }
 
 header.fixed-top {
-  background: #2B4864;
+  background: #EA3788;
   padding: 5px; }
 
 .header-menu .col-sm-7 {
