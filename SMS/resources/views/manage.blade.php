@@ -23,7 +23,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('home') }}" class="btn btn-primary" style="font-size: 13px; color: #fff;"><i class="fa fa-arrow-left"></i> Back</a>
+                            <a href="{{ route('schedules') }}" class="btn btn-primary" style="font-size: 13px; color: #fff;"><i class="fa fa-arrow-left"></i> Back</a>
                             <button type="file" class="btn btn-primary" style="font-size: 13px; color: #fff;"><i class="fa fa-upload"></i> Upload Grades</button>
                         </div>
                         <div class="card-body">

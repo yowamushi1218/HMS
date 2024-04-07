@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class CustomController extends Controller
 {
-    public function welcome()
+    public function class()
     {
-        return view('home');
+        return view('schedules');
     }
 
     public function manage()

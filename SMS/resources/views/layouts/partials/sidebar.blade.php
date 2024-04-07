@@ -10,9 +10,18 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <h4 class="menu-title mt-3">Dashboard</h4>
-                    <li class="active">
-                        <a href="{{ route('home') }}"> <i class="menu-icon fa fa-home"></i>Home </a>
+                    <li class="#">
+                        <a href="#"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
                     </li>
+                    <li class="#">
+                        <a href="#"> <i class="menu-icon fa fa-home"></i>Home </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ route('schedules') }}"> <i class="menu-icon fa fa-clock-o"></i>Class Schedules </a>
+                    </li>
+                    {{-- <li class="#">
+                        <a href="{{ route('home') }}"> <i class="menu-icon fa fa-home"></i>Home </a>
+                    </li> --}}
                 <h4 class="menu-title">Pages</h4>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Records</a>

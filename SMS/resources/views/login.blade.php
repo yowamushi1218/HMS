@@ -6,7 +6,7 @@
     </div>
     <div class="login-page">
     <div class="form">
-        <form class="register-form" method="POST" action="home">
+        <form class="register-form" method="POST" action="schedules">
             @csrf
             <h4 class="text-left text-white">Register</h4>
             <div style="position: relative;">
@@ -26,7 +26,7 @@
                 <p class="message">Already registered? <a href="#">Back to login</a></p>
             </div>
         </form>
-        <form class="login-form" method="POST" action="home">
+        <form class="login-form" method="POST" action="schedules">
             @csrf
             <h4 class="text-left text-white">Login</h4>
             <div style="position: relative;">

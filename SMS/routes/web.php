@@ -19,8 +19,8 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('home',[CustomController::class,'welcome']);
-Route::get('home', [CustomController::class, 'welcome'])->name('home');
+Route::post('schedules',[CustomController::class,'class']);
+Route::get('schedules', [CustomController::class, 'class'])->name('home');
 Route::get('/manage', [CustomController::class, 'manage'])->name('manage');
 
 
