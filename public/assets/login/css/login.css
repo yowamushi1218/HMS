@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    width: 90%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.container img {
+    margin-bottom: 5px;
+}
+
+.container header {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.container form {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.container form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.container form .input-fields {
+    margin-top: 16px;
+}
+
+.container form .input-field {
+    margin-bottom: 16px;
+}
+
+.input-field label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+
+.link {
+    font-size: 13px;
+    font-weight: 500;
+    color: #2e2e2e;
+    text-align: right;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field .icon {
+    position: absolute;
+    left: 15px;
+    top: 70%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+}
+
+.input-field input {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 10px 10px 10px 40px;
+    height: 42px;
+    width: 100%;
+}
+
+.input-field input:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+}
+
+.container form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0;
+    background-color: #4C6663;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.container form .btnText {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+form button:hover {
+    background-color: #0047d4;
+}
+
+form button i {
+    margin: 0 6px;
+}
+
+@media (max-width: 750px) {
+    .container form {
+        overflow-y: scroll;
+    }
+
+    .container form::-webkit-scrollbar {
+        display: none;
+    }
+
+    form .input-field {
+        width: calc(50% - 8px);
+    }
+}
+
+@media (max-width: 550px) {
+    form .input-field {
+        width: 100%;
+    }
+}
