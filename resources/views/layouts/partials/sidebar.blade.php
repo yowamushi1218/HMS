@@ -26,13 +26,13 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Clients</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user-md"></i><a href="#">Clients Records</a></li>
+                            <li><i class="fa fa-user-md"></i><a href="{{ route('clients') }}">Clients Records</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Users</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-users"></i><a href="#">Users Records</a></li>
+                            <li><i class="fa fa-users"></i><a href="{{ route('users') }}">Users Records</a></li>
                         </ul>
                     </li>
             </ul>

@@ -36,8 +36,10 @@ Route::post('/update', [CustomController::class, 'updateAppointment'])->name('up
 Route::get('/admin.manage', [CustomController::class, 'manage'])->name('manage');
 Route::post('delete',[CustomController::class, 'delete'])->name('delete');
 
-//Admin-Profile
+//Records
 Route::get('/admin.profile', [CustomController::class, 'profile'])->name('profile');
+Route::get('/admin.clients', [CustomController::class, 'clients'])->name('clients');
+Route::get('/admin.users', [CustomController::class, 'users'])->name('users');
 Route::post('admin.profile', [CustomController::class, 'updateInfo'])->name('updateInfo');
 
 //Logout

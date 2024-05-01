@@ -39,19 +39,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($clients as $client)
+                                    @foreach ($appointments as $index => $sched)
                                         <tr>
-                                            <td>{{ $client->client_id }}</td>
-                                            <td>{{ $client->client_name }}</td>
-                                            <td>{{ $client->client_user }}</td>
-                                            <td>{{ $client->client_reason }}</td>
-                                            <td>{{ $client->client_services }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($client->client_startAt)->format('F d, Y H:i') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($client->client_endAt)->format('F d, Y H:i') }}</td>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $sched->app_name }}</td>
+                                            <td>{{ $sched->app_user }}</td>
+                                            <td>{{ $sched->app_reason }}</td>
+                                            <td>{{ $sched->app_services }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($sched->app_startAt)->format('F d, Y H:i') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($sched->app_endAt)->format('F d, Y H:i') }}</td>
                                             <td class="text-center">
-                                                <a href="#" class="btn btn-info" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#ViewRecordsModal{{ $client->client_id }}"><i class="fa fa-eye"></i></a>
-                                                <a href="#" class="btn btn-success" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#EditRecordsModal{{ $client->client_id }}"><i class="fa fa-edit"></i></a>
-                                                <a class="btn btn-danger" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#DeleteRecordsModal{{ $client->client_id }}"><i class="fa fa-trash"></i></a>
+                                                <a href="#" class="btn btn-info" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#ViewRecordsModal{{ $sched->app_id }}"><i class="fa fa-eye"></i></a>
+                                                <a href="#" class="btn btn-success" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#EditRecordsModal{{ $sched->app_id }}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-danger" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#DeleteRecordsModal{{ $sched->app_id }}"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -76,24 +76,24 @@
                     @csrf
                         <div class="form-group">
                             <label>Client</label>
-                            <input class="form-control" name="client_name" type="text">
+                            <input class="form-control" name="app_name" type="text">
                         </div>
                         <div class="form-group">
                             <label>Reason's</label>
-                            <input class="form-control" name="client_reason" type="text">
+                            <input class="form-control" name="app_reason" type="text">
                         </div>
-                        <input class="form-control" name="client_user" type="hidden" value="{{ session('user_fname') }}">
+                        <input class="form-control" name="app_user" type="hidden" value="{{ session('user_fname') }}">
                         <div class="form-group">
                             <label>Services</label>
-                            <input class="form-control" name="client_services" type="text">
+                            <input class="form-control" name="app_services" type="text">
                         </div>
                         <div class="form-group">
                             <label>Date Start</label>
-                            <input class="form-control" name="client_startAt" type="datetime-local">
+                            <input class="form-control" name="app_startAt" type="datetime-local">
                         </div>
                         <div class="form-group">
                             <label>Date End</label>
-                            <input class="form-control" name="client_endAt" type="datetime-local">
+                            <input class="form-control" name="app_endAt" type="datetime-local">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -104,8 +104,8 @@
             </div>
         </div>
     </div>
-@foreach ($clients as $client)
-    <div id="ViewRecordsModal{{ $client->client_id }}" class="modal fade" role="dialog">
+@foreach ($appointments as $sched)
+    <div id="ViewRecordsModal{{ $sched->app_id }}" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -114,11 +114,11 @@
                 </div>
                 <div class="modal-body">
                     <label>Date</label>
-                    <p>{{ $client->createdAt }}</p>
-                    <label>Client</label>
-                    <p>{{ $client->client_name }}</p>
+                    <p>{{ $sched->createdAt }}</p>
+                    <label>app</label>
+                    <p>{{ $sched->app_name }}</p>
                     <label>Reason's</label>
-                    <p>{{ $client->client_reason }}</p>
+                    <p>{{ $sched->app_reason }}</p>
                 </div>
             <div class="modal-footer">
                 <form method="POST" action="{{ route('logout') }}">
@@ -129,7 +129,7 @@
         </div>
     </div>
 </div>
-<div id="EditRecordsModal{{ $client->client_id }}" class="modal fade" role="dialog">
+<div id="EditRecordsModal{{ $sched->app_id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -141,24 +141,24 @@
                     @csrf
                     <div class="form-group">
                         <label>Client</label>
-                        <input class="form-control" name="client_name" value="{{ $client->client_name }}" type="text">
+                        <input class="form-control" name="app_name" value="{{ $sched->app_name }}" type="text">
                     </div>
                     <div class="form-group">
                         <label>Reason's</label>
-                        <input class="form-control" name="client_reason" value="{{ $client->client_reason }}" type="text">
+                        <input class="form-control" name="app_reason" value="{{ $sched->app_reason }}" type="text">
                     </div>
-                    <input name="client_id" type="hidden" value="{{ $client->client_id }}">
+                    <input name="app_id" type="hidden" value="{{ $sched->app_id }}">
                     <div class="form-group">
                         <label>Services</label>
-                        <input class="form-control" name="client_services" value="{{ $client->client_services }}" type="text">
+                        <input class="form-control" name="app_services" value="{{ $sched->app_services }}" type="text">
                     </div>
                     <div class="form-group">
                         <label>Date Start</label>
-                        <input class="form-control" name="client_startAt" value="{{ $client->client_startAt }}" type="datetime-local">
+                        <input class="form-control" name="app_startAt" value="{{ $sched->app_startAt }}" type="datetime-local">
                     </div>
                     <div class="form-group">
                         <label>Date End</label>
-                        <input class="form-control" name="client_endAt" value="{{ $client->client_endAt }}" type="datetime-local">
+                        <input class="form-control" name="app_endAt" value="{{ $sched->app_endAt }}" type="datetime-local">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -169,7 +169,7 @@
         </div>
     </div>
 </div>
-<div id="DeleteRecordsModal{{ $client->client_id }}" class="modal fade" role="dialog">
+<div id="DeleteRecordsModal{{ $sched->app_id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -182,7 +182,7 @@
             <div class="modal-footer">
                 <form method="POST" action="{{ route('delete') }}">
                     @csrf
-                    <input type="hidden" name="client_id" value="{{ $client->client_id }}">
+                    <input type="hidden" name="app_id" value="{{ $sched->app_id }}">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger"><span class="fa fa-trash"></span> Delete</button>
                 </form>
@@ -192,5 +192,7 @@
 </div>
 @endforeach
 @endsection
+
+
 
 

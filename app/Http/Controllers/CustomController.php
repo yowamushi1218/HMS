@@ -14,24 +14,24 @@ class CustomController extends Controller
     public function appointment(Request $request)
     {
         $validatedData = $request->validate([
-            'client_name' => 'required|string|max:255',
-            'client_reason' => 'required|string|max:255',
-            'client_user' => 'required|string|max:255',
-            'client_services' => 'nullable|string|max:255',
-            'client_startAt' => 'required|date',
-            'client_endAt' => 'required|date',
+            'app_name' => 'required|string|max:255',
+            'app_reason' => 'required|string|max:255',
+            'app_user' => 'required|string|max:255',
+            'app_services' => 'nullable|string|max:255',
+            'app_startAt' => 'required|date',
+            'app_endAt' => 'required|date',
         ]);
 
-        DB::table('clients')->insert([
-            'client_name' => $validatedData['client_name'],
-            'client_reason' => $validatedData['client_reason'],
-            'client_user' => $validatedData['client_user'],
-            'client_services' => $validatedData['client_services'],
-            'client_startAt' => $validatedData['client_startAt'],
-            'client_endAt' => $validatedData['client_endAt'],
+        DB::table('appointments')->insert([
+            'app_name' => $validatedData['app_name'],
+            'app_reason' => $validatedData['app_reason'],
+            'app_user' => $validatedData['app_user'],
+            'app_services' => $validatedData['app_services'],
+            'app_startAt' => $validatedData['app_startAt'],
+            'app_endAt' => $validatedData['app_endAt'],
             'createdAt' => now(),
             'updatedAt' => now(),
-            'client_active' => 1,
+            'app_active' => 1,
         ]);
 
         return redirect()->back();
@@ -39,12 +39,30 @@ class CustomController extends Controller
 
     public function class()
     {
-        $clients = DB::table('clients')
-            ->orderBy('client_id', 'asc')
-            ->where('client_active', 1)
+        $appointments = DB::table('appointments')
+            ->orderBy('app_id', 'asc')
+            ->where('app_active', 1)
             ->get();
 
-        return view('admin.schedules', compact('clients'));
+        return view('admin.schedules', compact('appointments'));
+    }
+
+    public function clients()
+    {
+        $clients = DB::table('clients')
+            ->orderBy('client_id', 'asc')
+            ->get();
+
+        return view('admin.clients', compact('clients'));
+    }
+
+    public function users()
+    {
+        $users = DB::table('users')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.users', compact('users'));
     }
 
 
@@ -103,23 +121,6 @@ class CustomController extends Controller
                 'user_images' => $imagePath,
                 'user_is_active' => 1,
                 'user_created_at' => now(),
-            ]);
-
-            DB::table('family_details')->insert([
-                'id' => $user_id,
-                'father_fname' => $request->input('father_fname'),
-                'father_bday' => $request->input('father_bday'),
-                'father_bplace' => $request->input('father_bplace'),
-                'mother_fname' => $request->input('mother_fname'),
-                'mother_bday' => $request->input('mother_bday'),
-                'mother_bplace' => $request->input('mother_bplace'),
-                'father_phoneno' => $request->input('father_phoneno'),
-                'mother_phoneno' => $request->input('mother_phoneno'),
-                'family_address' => $request->input('family_address'),
-                'family_city' => $request->input('family_city'),
-                'family_province' => $request->input('family_province'),
-                'family_zipcode' => $request->input('family_zipcode'),
-                'family_created_at' => now(),
             ]);
             $request->session()->put('id', $user_id);
             $request->session()->put('user_images', $imagePath);
@@ -209,23 +210,23 @@ class CustomController extends Controller
     public function updateAppointment(Request $request)
     {
         $validatedData = $request->validate([
-            'client_id' => 'required|exists:clients,client_id',
-            'client_name' => 'required|string|max:255',
-            'client_reason' => 'required|string|max:255',
-            'client_services' => 'nullable|string|max:255',
-            'client_startAt' => 'required|date',
-            'client_endAt' => 'required|date',
+            'app_id' => 'required|exists:clients,app_id',
+            'app_name' => 'required|string|max:255',
+            'app_reason' => 'required|string|max:255',
+            'app_services' => 'nullable|string|max:255',
+            'app_startAt' => 'required|date',
+            'app_endAt' => 'required|date',
         ]);
 
-        DB::table('clients')
-            ->where('client_id', $validatedData['client_id'])
+        DB::table('appointments')
+            ->where('app_id', $validatedData['app_id'])
             ->update([
-                'client_name' => $validatedData['client_name'],
-                'client_reason' => $validatedData['client_reason'],
-                'client_user' => $request->session()->get('user_fname'),
-                'client_services' => $validatedData['client_services'],
-                'client_startAt' => $validatedData['client_startAt'],
-                'client_endAt' => $validatedData['client_endAt'],
+                'app_name' => $validatedData['app_name'],
+                'app_reason' => $validatedData['app_reason'],
+                'app_user' => $request->session()->get('user_fname'),
+                'app_services' => $validatedData['app_services'],
+                'app_startAt' => $validatedData['app_startAt'],
+                'app_endAt' => $validatedData['app_endAt'],
                 'updatedAt' => now(),
             ]);
 
@@ -234,11 +235,11 @@ class CustomController extends Controller
 
     public function delete(Request $request)
     {
-        $client_id = $request->input('client_id');
+        $app_id = $request->input('app_id');
         DB::table('clients')
-            ->where('client_id', '=', $client_id)
+            ->where('app_id', '=', $app_id)
             ->update([
-                'client_active' => '-1',
+                'app_active' => '-1',
                 'updatedAt' => now(),
             ]);
 
