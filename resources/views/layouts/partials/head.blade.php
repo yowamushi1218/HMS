@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>HMS</title>
+<title>MedSysPro</title>
 <meta name="description" content="SMS">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/x-icon" href="{{ asset('assets/login/images/logo.png') }}">

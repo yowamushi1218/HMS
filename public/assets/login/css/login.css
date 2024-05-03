@@ -76,6 +76,7 @@ a{
     text-align: center;
     align-items: center;
     justify-content: center;
+    color:#027d40;
 }
 
 .input-field {
@@ -117,7 +118,7 @@ a{
     color: #fff;
     border-radius: 5px;
     margin: 20px 0;
-    background-color: #4C6663;
+    background-color: #027d40;
     transition: all 0.3s linear;
     cursor: pointer;
 }
@@ -128,7 +129,7 @@ a{
 }
 
 form button:hover {
-    background-color: #0047d4;
+    background-color: #0a3c23;
 }
 
 form button i {
