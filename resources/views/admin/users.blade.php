@@ -287,7 +287,7 @@
                     <p>Are you sure you want to delete this user?<p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('removeUsers') }}">
                         @csrf
                         <input type="hidden" name="id" value="{{$user->id }}">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

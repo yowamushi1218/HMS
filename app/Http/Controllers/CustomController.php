@@ -249,6 +249,19 @@ class CustomController extends Controller
         return redirect()->back();
     }
 
+    public function remove(Request $request)
+    {
+        $user = $request->input('id');
+        DB::table('users')
+            ->where('id', '=', $user)
+            ->update([
+                'user_is_active' => '-1',
+                'user_update_at' => now(),
+            ]);
+
+        return redirect()->back();
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
