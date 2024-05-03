@@ -83,7 +83,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('updateAppointment') }}">
+                <form method="POST" action="{{ route('addUsers') }}">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -108,9 +108,15 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input class="form-control" name="user_address" type="text">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Email</label>
+                            <input class="form-control" name="email" type="email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Address</label>
+                            <input class="form-control" name="user_address" type="text">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -155,7 +161,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success"><span class="fa fa-save"></span> Save</button>
+                    <button class="btn btn-success sumbit" name="submit" id="submit"><span class="fa fa-save"></span> Save</button>
+
                 </div>
             </form>
         </div>
@@ -200,9 +207,15 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input class="form-control" name="user_address" type="text" value="{{$user->user_address }}">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Email</label>
+                            <input class="form-control" name="email" type="email" value="{{$user->email }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Address</label>
+                            <input class="form-control" name="user_address" type="text" value="{{$user->user_address }}">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -243,12 +256,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
+                        <label>Role</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="user_role">
                             @if($user->user_role == 1)
                                 <option value="1">Admin</option>
                                 <option value="2">User</option>
-                            @elseif($user->user_is_active == 2)
+                            @elseif($user->user_role == 2)
                                 <option value="2">User</option>
                                 <option value="1">Admin</option>
                             @endif

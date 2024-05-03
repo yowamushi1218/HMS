@@ -40,6 +40,7 @@ Route::post('delete',[CustomController::class, 'delete'])->name('delete');
 Route::get('/admin.profile', [CustomController::class, 'profile'])->name('profile');
 Route::get('/admin.clients', [CustomController::class, 'clients'])->name('clients');
 Route::get('/admin.users', [CustomController::class, 'users'])->name('users');
+Route::post('/add-users', [CustomController::class, 'add_register'])->name('addUsers');
 Route::post('admin.profile', [CustomController::class, 'updateInfo'])->name('updateInfo');
 
 //Logout

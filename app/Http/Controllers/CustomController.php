@@ -119,13 +119,16 @@ class CustomController extends Controller
                 'user_blockno' => $request->input('user_blockno'),
                 'user_lotno' => $request->input('user_lotno'),
                 'user_images' => $imagePath,
+                'user_role' => $request->input('user_role'),
                 'user_is_active' => 1,
                 'user_created_at' => now(),
             ]);
+
             $request->session()->put('id', $user_id);
             $request->session()->put('user_images', $imagePath);
             $request->session()->put('user_fname', $request->input('user_fname'));
             $request->session()->put('email', $request->input('email'));
+            $request->session()->put('user_role',$request->input('user_role'));
 
             return redirect()->route('login');
         } else {

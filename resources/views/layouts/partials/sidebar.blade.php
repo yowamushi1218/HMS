@@ -4,8 +4,8 @@
             <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand hidden mr-1" href="{{ route('schedules') }}"><img src="{{ asset('assets/dashboard/images/fav-logo.png') }}" alt="Logo"></a>
-            <a class="navbar-brand" href="/"><img src="{{ asset('assets/dashboard/images/fav-logo.png') }}" alt="Logo" width="30">&nbsp;<strong>HMS</strong></a>
+            <a class="navbar-brand hidden mr-1" href="{{ route('schedules') }}"><img src="{{ asset('assets/dashboard/images/meditrack-trans.svg') }}" alt="Logo"></a>
+            <a class="navbar-brand" href="/"><img src="{{ asset('assets/dashboard/images/meditrack-white.svg') }}" alt="Logo" width="150"></a>
         </div>
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">

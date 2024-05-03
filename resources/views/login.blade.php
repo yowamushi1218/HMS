@@ -1,7 +1,7 @@
 @extends('layouts.themes.login')
 @section('content')
     <div class="container">
-        <img src="{{ asset('assets/login/images/logo.png') }}" width="150">
+        <img src="{{ asset('assets/login/images/logo.svg') }}" width="150">
         <form method="post" action="{{ route('add_login') }}">
             @csrf
             <div class="form">
