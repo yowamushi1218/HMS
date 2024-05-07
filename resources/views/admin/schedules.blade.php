@@ -225,7 +225,39 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-
+                    <div class="form-row">
+                        <label class="ml-auto">{{ $sched->updated_at }}</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <b>First Name</b>
+                            <p>{{ $sched->app_fname }}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <b>Middle Name</b>
+                            <p>{{ $sched->app_mname }}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <b>Last Name</b>
+                            <p>{{ $sched->app_lname }}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <b>Address</b>
+                            <p>{{ $sched->app_address }}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <b>Birthday</b>
+                            <p>{{ $sched->app_bday }}</p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <b>Gender</b>
+                            <p>{{ $sched->app_gender }}</p>
+                        </div>
+                    </div>
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -243,6 +275,7 @@
             <div class="modal-body">
                 <form method="POST" action="{{ route('updateAppointment') }}">
                     @csrf
+                    <input type="hidden" name="app_id" value="{{ $sched->app_id }}">
                     <fieldset>
                         <legend>Personal Information</legend>
                         <div class="form-row">
@@ -271,17 +304,17 @@
                             <div class="form-group col-md-6">
                                 <label for="gender">Gender</label>
                                 <select class="form-control" id="gender" name="app_gender" required>
-                                    <option value="" disabled>Select Gender</option>
-                                    <option value="Male" {{ $sched->app_gender == 'male' ? 'selected' : '' }}>Male</option>
-                                    <option value="Female" {{ $sched->app_gender == 'female' ? 'selected' : '' }}>Female</option>
-                                    <option value="Other" {{ $sched->app_gender == 'other' ? 'selected' : '' }}>Other</option>
+                                    <option value="">Select Gender</option>
+                                    <option value="male" {{ $sched->app_gender == 'male' ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ $sched->app_gender == 'female' ? 'selected' : '' }}>Female</option>
+                                    <option value="other" {{ $sched->app_gender == 'other' ? 'selected' : '' }}>Other</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="blood_type">Blood Type</label>
                             <select class="form-control" id="blood_type" name="app_blood_type" required>
-                                <option value="" disabled>Select Blood Type</option>
+                                <option value="">Select Blood Type</option>
                                 <option value="A+" {{ $sched->app_blood_type == 'A+' ? 'selected' : '' }}>A+</option>
                                 <option value="A-" {{ $sched->app_blood_type == 'A-' ? 'selected' : '' }}>A-</option>
                                 <option value="B+" {{ $sched->app_blood_type == 'B+' ? 'selected' : '' }}>B+</option>
@@ -366,15 +399,16 @@
                             </div>
                         </div>
                     </fieldset>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"><span class="fa fa-pencil"></span> Update</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success"><span class="fa fa-pencil"></span> Update</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
 <div id="DeleteRecordsModal{{ $sched->app_id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">

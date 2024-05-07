@@ -269,13 +269,40 @@ class CustomController extends Controller
             'app_active' => 'required|integer',
         ]);
 
-        $validatedData['updated_at'] = now();
+        try {
+            $affectedRows = DB::table('appointments')
+                ->where('app_id', $validatedData['app_id'])
+                ->update([
+                    'app_fname' => $validatedData['app_fname'],
+                    'app_mname' => $validatedData['app_mname'],
+                    'app_lname' => $validatedData['app_lname'],
+                    'app_address' => $validatedData['app_address'],
+                    'app_bday' => $validatedData['app_bday'],
+                    'app_gender' => $validatedData['app_gender'],
+                    'app_blood_type' => $validatedData['app_blood_type'],
+                    'app_height_cm' => $validatedData['app_height_cm'],
+                    'app_weight_kg' => $validatedData['app_weight_kg'],
+                    'app_allergies' => $validatedData['app_allergies'],
+                    'app_medications' => $validatedData['app_medications'],
+                    'app_medical_conditions' => $validatedData['app_medical_conditions'],
+                    'app_email' => $validatedData['app_email'],
+                    'app_phone' => $validatedData['app_phone'],
+                    'app_contact_address' => $validatedData['app_contact_address'],
+                    'app_appointment_date' => $validatedData['app_appointment_date'],
+                    'app_preferred_time' => $validatedData['app_preferred_time'],
+                    'app_reminder_preference' => $validatedData['app_reminder_preference'],
+                    'app_active' => $validatedData['app_active'],
+                    'updated_at' => now(),
+                ]);
 
-        DB::table('appointments')
-            ->where('app_id', $validatedData['app_id'])
-            ->update($validatedData);
+            if ($affectedRows === 0) {
+                throw new \Exception('No appointment found with the given ID.');
+            }
 
-        return redirect()->back();
+            return redirect()->back()->with('success', 'Appointment updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update appointment: ' . $e->getMessage());
+        }
     }
 
     //Remove-Delete functions
