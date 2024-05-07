@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomController;
 
 
@@ -21,7 +22,7 @@ Route::get('/', function () {
 });
 
 //Dashboard
-Route::get('admin.dashboard', [CustomController::class, 'main'])->name('dashboard');
+Route::get('/admin/dashboard', [CustomController::class, 'main'])->name('admin.dashboard');
 
 //Login-Register
 Route::get('register', [CustomController::class, 'viewregistration'])->name('register');
@@ -33,7 +34,7 @@ Route::post('admin.dashboard',[CustomController::class,'loginUser'])->name('add_
 Route::post('admin.schedules',[CustomController::class,'class']);
 Route::get('admin.schedules', [CustomController::class, 'class'])->name('schedules');
 Route::post('/appointments', [CustomController::class, 'appointment'])->name('appointments');
-Route::post('/update', [CustomController::class, 'updateAppointment'])->name('updateAppointment');
+
 Route::get('/admin.manage', [CustomController::class, 'manage'])->name('manage');
 Route::post('delete',[CustomController::class, 'delete'])->name('delete');
 
@@ -44,10 +45,17 @@ Route::get('/admin.users', [CustomController::class, 'users'])->name('users');
 Route::post('/remove-users', [CustomController::class, 'remove'])->name('removeUsers');
 Route::post('/add-users', [CustomController::class, 'add_register'])->name('addUsers');
 Route::post('admin.profile', [CustomController::class, 'updateInfo'])->name('updateInfo');
+Route::post('/delete/appointment', [CustomController::class, 'deleteAppointment'])->name('deleteAppointment');
+
 
 //Logout
 Route::post('/logout', [CustomController::class, 'logout'])->name('logout');
 
 //Header
 Route::get('/layouts.partials.header', [CustomController::class, 'header']);
+
+Route::post('/admin/schedules', [CustomController::class, 'updateAppointment'])->name('updateAppointment');
+
+//Users
+Route::get('/users/dashboard', [UserController::class, 'userMain'])->name('users.dashboard');
 

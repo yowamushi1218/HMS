@@ -40,39 +40,43 @@ class CustomController extends Controller
     public function appointment(Request $request)
     {
         $validatedData = $request->validate([
-            'app_name' => 'required|string|max:255',
-            'app_reason' => 'required|string|max:255',
-            'app_user' => 'required|string|max:255',
-            'app_services' => 'nullable|string|max:255',
-            'app_startAt' => 'required|date',
-            'app_endAt' => 'required|date',
+            'app_fname' => 'required|string',
+            'app_mname' => 'nullable|string',
+            'app_lname' => 'required|string',
+            'app_address' => 'nullable|string',
+            'app_bday' => 'required|date',
+            'app_gender' => 'required|string',
+            'app_blood_type' => 'required|string',
+            'app_height_cm' => 'required|integer',
+            'app_weight_kg' => 'required|integer',
+            'app_allergies' => 'nullable|string',
+            'app_medications' => 'nullable|string',
+            'app_medical_conditions' => 'nullable|string',
+            'app_email' => 'required|email',
+            'app_phone' => 'nullable|string',
+            'app_contact_address' => 'nullable|string',
+            'app_appointment_date' => 'required|date',
+            'app_preferred_time' => 'nullable|string',
+            'app_reminder_preference' => 'nullable|string',
         ]);
 
-        DB::table('appointments')->insert([
-            'app_name' => $validatedData['app_name'],
-            'app_reason' => $validatedData['app_reason'],
-            'app_user' => $validatedData['app_user'],
-            'app_services' => $validatedData['app_services'],
-            'app_startAt' => $validatedData['app_startAt'],
-            'app_endAt' => $validatedData['app_endAt'],
-            'createdAt' => now(),
-            'updatedAt' => now(),
-            'app_active' => 1,
-        ]);
+        $validatedData['app_active'] = 1;
+        $validatedData['created_at'] = now();
 
-        return redirect()->back();
+        DB::table('appointments')->insert($validatedData);
+
+        return redirect()->back()->with('success', 'Appointment created successfully!');
     }
 
     public function class()
     {
         $appointments = DB::table('appointments')
+            ->select('*', DB::raw("CONCAT(app_fname, ' ', COALESCE(app_mname, ''), ' ', app_lname) AS full_name"))
             ->orderBy('app_id', 'asc')
-            ->where('app_active', 1)
             ->get();
 
         return view('admin.schedules', compact('appointments'));
     }
-
 
     public function clients()
     {
@@ -100,12 +104,13 @@ class CustomController extends Controller
             ->where('user_role', 1)
             ->count();
         $totalAppointments = DB::table('appointments')
-            ->whereDate('app_startAt', $currentDate)
+            ->whereDate('app_appointment_date', $currentDate)
             ->count();
         $totalClients = DB::table('clients')->count();
 
         $appointments = DB::table('appointments')
-            ->whereDate('app_startAt', $currentDate)
+            ->whereDate('app_appointment_date', $currentDate)
+            ->select('*', DB::raw("CONCAT(app_fname, ' ', COALESCE(app_mname, ''), ' ', app_lname) AS full_name"))
             ->orderBy('app_id', 'asc')
             ->get();
 
@@ -176,8 +181,15 @@ class CustomController extends Controller
                     $request->session()->put('user_fname', $user->user_fname);
                     $request->session()->put('email', $user->email);
                     $request->session()->put('user', $user);
+                    $request->session()->put('user_role', $user->user_role);
 
-                    return redirect('admin.dashboard');
+                    if ($user->user_role == 1) {
+                        return redirect()->route('admin.dashboard');
+                    } elseif ($user->user_role == 2) {
+                        return redirect()->route('users.dashboard');
+                    } else {
+                        return back();
+                    }
                 } else {
                     $request->session()->flash('error', 'Wrong username or password');
                     return back();
@@ -191,7 +203,6 @@ class CustomController extends Controller
             return back();
         }
     }
-
 
     //Update Functions
     public function updateInfo(Request $request)
@@ -236,38 +247,58 @@ class CustomController extends Controller
     public function updateAppointment(Request $request)
     {
         $validatedData = $request->validate([
-            'app_id' => 'required|exists:clients,app_id',
-            'app_name' => 'required|string|max:255',
-            'app_reason' => 'required|string|max:255',
-            'app_services' => 'nullable|string|max:255',
-            'app_startAt' => 'required|date',
-            'app_endAt' => 'required|date',
+            'app_id' => 'required|integer',
+            'app_fname' => 'required|string',
+            'app_mname' => 'nullable|string',
+            'app_lname' => 'required|string',
+            'app_address' => 'nullable|string',
+            'app_bday' => 'required|date',
+            'app_gender' => 'required|string',
+            'app_blood_type' => 'required|string',
+            'app_height_cm' => 'required|integer',
+            'app_weight_kg' => 'required|integer',
+            'app_allergies' => 'nullable|string',
+            'app_medications' => 'nullable|string',
+            'app_medical_conditions' => 'nullable|string',
+            'app_email' => 'required|email',
+            'app_phone' => 'nullable|string',
+            'app_contact_address' => 'nullable|string',
+            'app_appointment_date' => 'required|date',
+            'app_preferred_time' => 'nullable|string',
+            'app_reminder_preference' => 'nullable|string',
+            'app_active' => 'required|integer',
         ]);
+
+        $validatedData['updated_at'] = now();
 
         DB::table('appointments')
             ->where('app_id', $validatedData['app_id'])
+            ->update($validatedData);
+
+        return redirect()->back();
+    }
+
+    //Remove-Delete functions
+    public function delete(Request $request)
+    {
+        $app_id = $request->input('client_id');
+        DB::table('clients')
+            ->where('client_id', '=', $app_id)
             ->update([
-                'app_name' => $validatedData['app_name'],
-                'app_reason' => $validatedData['app_reason'],
-                'app_user' => $request->session()->get('user_fname'),
-                'app_services' => $validatedData['app_services'],
-                'app_startAt' => $validatedData['app_startAt'],
-                'app_endAt' => $validatedData['app_endAt'],
+                'client_active' => '-1',
                 'updatedAt' => now(),
             ]);
 
         return redirect()->back();
     }
 
-
-    //Remove-Delete functions
-    public function delete(Request $request)
+    public function deleteAppointment(Request $request)
     {
         $app_id = $request->input('app_id');
-        DB::table('clients')
+        DB::table('appointments')
             ->where('app_id', '=', $app_id)
             ->update([
-                'app_active' => '-1',
+                'app_active' => '0',
                 'updatedAt' => now(),
             ]);
 

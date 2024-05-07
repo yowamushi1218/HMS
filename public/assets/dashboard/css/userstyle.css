@@ -1,0 +1,44 @@
+/* CSS for Medical Form Appearance */
+
+/* General styling */
+.card {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .card-body {
+    padding: 30px;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .btns {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 20px;
+    }
+  }

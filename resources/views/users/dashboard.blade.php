@@ -5,7 +5,7 @@
         <div class="page-header float-left">
             <div class="page-title">
                 <ol class="breadcrumb text-left">
-                    <li><h3>User's Home</h3></li>
+                    <li><h3>Appointment Form</h3></li>
                 </ol>
             </div>
         </div>
@@ -14,94 +14,130 @@
 <section id="dashboard">
     <div class="content mt-3">
         <div class="animated fadeIn">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card bg-primary">
-                        <div class="card-body">
-                            <i class="fa fa-id-card-o" style='font-size:70px; color: #ffffff;'></i>
-                            <span class="ml-5 text-white" style="font-size: 50px;">{{ $totalUsers }}</span>
-                            <p style="font-size: 14px; color:#ffffff">Total Employee's Available</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card bg-secondary">
-                        <div class="card-body">
-                            <i class="fa fa-calendar" style='font-size:70px; color: #ffffff;'></i>
-                            <span class="ml-5 text-white" style="font-size: 50px;">{{ $totalAppointments }}</span>
-                            <p style="font-size: 14px; color:#ffffff">Total Appointments Today</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card bg-danger">
-                        <div class="card-body">
-                            <i class="fa fa-user-md" style='font-size:70px; color: #ffffff;'></i>
-                            <span class="ml-5 text-white" style="font-size: 50px;">{{ $totalClients }}</span>
-                            <p style="font-size: 14px; color:#ffffff">Total Overall Clients</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <canvas id="barChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div id='calendar'>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div style="max-width: 600; margin: 0 auto;">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Client</th>
-                                            <th>Employee</th>
-                                            <th>Reason's</th>
-                                            <th>Services</th>
-                                            <th>Time</th>
-                                            <th>Status</th>
-                                            <th class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($appointments as $index => $sched)
-                                            <tr>
-                                                <td>{{ $index + 1 }}</td>
-                                                <td>{{ $sched->app_name }}</td>
-                                                <td>{{ $sched->app_user }}</td>
-                                                <td>{{ $sched->app_reason }}</td>
-                                                <td>{{ $sched->app_services }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($sched->app_endAt)->format('F d, Y H:i') }}</td>
-                                                <td>
-                                                    @if($sched->app_active == '1')
-                                                        <span class="badge badge-warning"><i class="fa fa-refresh"></i> Pending</span>
-                                                    @elseif($sched->app_active == '-1')
-                                                        <span class="badge badge-primary"><i class="fa fa-check-square-o"></i> Complete</span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-info" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#ViewRecordsModal{{ $sched->app_id }}"><i class="fa fa-eye"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            <form action="SEND ADDRESS" id="ft-form" method="POST" accept-charset="UTF-8">
+                                <fieldset>
+                                    <legend>Personal Information</legend>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="first_name">First Name</label>
+                                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="middle_name">Middle Name</label>
+                                            <input type="text" class="form-control" id="middle_name" name="middle_name">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="last_name">Last Name</label>
+                                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="dob">Date of Birth</label>
+                                            <input type="date" class="form-control" id="dob" name="dob" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-control" id="gender" name="gender" required>
+                                                <option value="" disabled selected>Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="blood_type">Blood Type</label>
+                                        <select class="form-control" id="blood_type" name="blood_type" required>
+                                            <option value="" disabled selected>Select Blood Type</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Health Information</legend>
+                                    <div class="form-group">
+                                        <label for="height_cm">Height (cm)</label>
+                                        <input type="number" class="form-control" id="height_cm" name="height_cm" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="weight_kg">Weight (kg)</label>
+                                        <input type="number" class="form-control" id="weight_kg" name="weight_kg" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="allergies">Allergies</label>
+                                        <textarea class="form-control" id="allergies" name="allergies" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="medications">Current Medications</label>
+                                        <textarea class="form-control" id="medications" name="medications" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="medical_conditions">Medical Conditions</label>
+                                        <textarea class="form-control" id="medical_conditions" name="medical_conditions" rows="3"></textarea>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Contact Information</legend>
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Appointment Request</legend>
+                                    <div class="form-group">
+                                        <label for="appointment_date">Date</label>
+                                        <input type="date" class="form-control" id="appointment_date" name="appointment_date" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="preferred_time">Preferred Time</label>
+                                            <select class="form-control" id="preferred_time" name="preferred_time">
+                                                <option value="" disabled selected>Select Time</option>
+                                                <option value="morning">Morning</option>
+                                                <option value="afternoon">Afternoon</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="reminder_preference">Reminder Preference</label>
+                                            <select class="form-control" id="reminder_preference" name="reminder_preference">
+                                                <option value="" disabled selected>Select Preference</option>
+                                                <option value="email">Email</option>
+                                                <option value="phone">Phone call</option>
+                                                <option value="sms">SMS</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="btns">
+                                    <input type="text" name="_gotcha" value="" style="display:none;">
+                                    <input type="submit" class="btn btn-primary" value="Submit Request">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -109,44 +145,5 @@
         </div>
     </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
-      });
-      calendar.render();
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Sample Data',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-                data: [10, 20, 30, 40, 50, 60, 70]
-            }]
-        };
-        var options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        };
-        var ctx = document.getElementById('barChart').getContext('2d');
-        var barChart = new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-        });
-    });
-</script>
+<link rel="stylesheet" href="{{ asset('assets/dashboard/css/userstyle.css') }}">
 @endsection

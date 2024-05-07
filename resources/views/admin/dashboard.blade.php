@@ -70,32 +70,32 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Client</th>
-                                            <th>Employee</th>
-                                            <th>Reason's</th>
-                                            <th>Services</th>
+                                            <th>Phone</th>
+                                            <th>Condition's</th>
                                             <th>Time</th>
+                                            <th>Date</th>
                                             <th>Status</th>
-                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($appointments as $index => $sched)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $sched->app_name }}</td>
-                                                <td>{{ $sched->app_user }}</td>
-                                                <td>{{ $sched->app_reason }}</td>
-                                                <td>{{ $sched->app_services }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($sched->app_endAt)->format('F d, Y H:i') }}</td>
+                                                <td>{{ $sched->full_name }}</td>
+                                                <td>{{ $sched->app_phone }}</td>
+                                                <td>{{ $sched->app_medical_conditions }}</td>
+                                                <td>{{ $sched->app_preferred_time }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($sched->app_appointment_date)->format('F d, Y H:i') }}</td>
                                                 <td>
                                                     @if($sched->app_active == '1')
-                                                        <span class="badge badge-warning"><i class="fa fa-refresh"></i> Pending</span>
+                                                        <span class="badge badge-success">On-going</span>
+                                                    @elseif($sched->app_active == '2')
+                                                        <span class="badge badge-primary">Approved</span>
                                                     @elseif($sched->app_active == '-1')
-                                                        <span class="badge badge-primary"><i class="fa fa-check-square-o"></i> Complete</span>
+                                                        <span class="badge badge-warning">Cancelled</span>
+                                                    @elseif($sched->app_active == '0')
+                                                        <span class="badge badge-danger">Inactive</span>
                                                     @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-info" style="font-size: 13px; color: #fff;" data-toggle="modal" data-target="#ViewRecordsModal{{ $sched->app_id }}"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

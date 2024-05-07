@@ -9,15 +9,16 @@
                 <a class="navbar-brand" href="/"><img src="{{ asset('assets/dashboard/images/meditrack-white.svg') }}" alt="Logo" width="150"></a>
             </div>
             <div id="main-menu" class="main-menu collapse navbar-collapse">
+                @if(Session::has('user_fname') && Session::get('user')->user_role == 1)
                 <ul class="nav navbar-nav">
-                <h4 class="menu-title mt-3">Dashboard</h4>
-                    <li class="active">
-                        <a href="{{ route('dashboard') }}"> <i class="menu-icon fa fa-home"></i>Home </a>
-                    </li>
-                    <li class="active">
-                        <a href="{{ route('schedules') }}"> <i class="menu-icon fa fa-calendar"></i>Appointments </a>
-                    </li>
-                <h4 class="menu-title">Records</h4>
+                    <h4 class="menu-title mt-3">Dashboard</h4>
+                        <li class="active">
+                            <a href="{{ route('admin.dashboard') }}"> <i class="menu-icon fa fa-home"></i>Home </a>
+                        </li>
+                        <li class="active">
+                            <a href="{{ route('schedules') }}"> <i class="menu-icon fa fa-calendar"></i>Appointments </a>
+                        </li>
+                    <h4 class="menu-title">Records</h4>
                     <li class="active">
                         <a href="{{ route('clients') }}"> <i class="menu-icon fa fa-user-md"></i>Clients Records </a>
                     </li>
@@ -25,6 +26,19 @@
                         <a href="{{ route('users') }}"> <i class="menu-icon fa fa-users"></i>User Records </a>
                     </li>
                 </ul>
+                @else
+                    <ul class="nav navbar-nav">
+                        <h4 class="menu-title mt-3">Medical Track</h4>
+                        <li class="active">
+                            <a href="#"> <i class="menu-icon fa fa-map-marker"></i> Track Records</a>
+                        </li>
+                        <br>
+                        <h4 class="menu-title mt-3">Fill - out forms</h4>
+                        <li class="active">
+                            <a href="{{ route('users.dashboard') }}"> <i class="menu-icon fa fa-calendar"></i> Appointments</a>
+                        </li>
+                    </ul>
+                @endif
             </div>
         </nav>
     </aside>
