@@ -1,16 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Validation\ValidationException;
 
 class CustomController extends Controller
 {
+    //View Functions
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function viewregistration()
+    {
+        return view('register');
+    }
+
+    public function manage()
+    {
+        return view('admin.manage');
+    }
+
     public function appointment(Request $request)
     {
         $validatedData = $request->validate([
@@ -47,6 +73,7 @@ class CustomController extends Controller
         return view('admin.schedules', compact('appointments'));
     }
 
+
     public function clients()
     {
         $clients = DB::table('clients')
@@ -65,30 +92,24 @@ class CustomController extends Controller
         return view('admin.users', compact('users'));
     }
 
-
-    public function manage()
-    {
-        return view('admin.manage');
-    }
-
     public function main()
     {
-        return view('admin.dashboard');
-    }
+        $currentDate = now()->format('Y-m-d');
+        $totalUsers = DB::table('users')
+            ->where('id', session('id'))
+            ->where('user_role', 1)
+            ->count();
+        $totalAppointments = DB::table('appointments')
+            ->whereDate('app_startAt', $currentDate)
+            ->count();
+        $totalClients = DB::table('clients')->count();
 
-    public function profile()
-    {
-        return view('admin.profile');
-    }
+        $appointments = DB::table('appointments')
+            ->whereDate('app_startAt', $currentDate)
+            ->orderBy('app_id', 'asc')
+            ->get();
 
-    public function login()
-    {
-        return view('login');
-    }
-
-    public function viewregistration()
-    {
-        return view('register');
+        return view('admin.dashboard', compact('appointments', 'totalUsers', 'totalAppointments','totalClients'));
     }
 
     public function add_register(Request $request)
@@ -171,6 +192,8 @@ class CustomController extends Controller
         }
     }
 
+
+    //Update Functions
     public function updateInfo(Request $request)
     {
         $request->validate([
@@ -236,6 +259,8 @@ class CustomController extends Controller
         return redirect()->back();
     }
 
+
+    //Remove-Delete functions
     public function delete(Request $request)
     {
         $app_id = $request->input('app_id');
@@ -262,9 +287,11 @@ class CustomController extends Controller
         return redirect()->back();
     }
 
+
+    //Logout Functions
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('login');
+        return redirect()->route('login');
     }
 }

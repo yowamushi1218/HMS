@@ -15,6 +15,7 @@ use App\Http\Controllers\CustomController;
 |
 */
 
+
 Route::get('/', function () {
     return view('login');
 });
@@ -49,5 +50,4 @@ Route::post('/logout', [CustomController::class, 'logout'])->name('logout');
 
 //Header
 Route::get('/layouts.partials.header', [CustomController::class, 'header']);
-
 

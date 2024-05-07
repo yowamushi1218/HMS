@@ -5,7 +5,7 @@
         <div class="page-header float-left">
             <div class="page-title">
                 <ol class="breadcrumb text-left">
-                    <li><h3>Home</h3></li>
+                    <li><h3>User's Home</h3></li>
                 </ol>
             </div>
         </div>
