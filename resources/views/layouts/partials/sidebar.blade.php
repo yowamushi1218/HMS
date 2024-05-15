@@ -41,12 +41,12 @@
                             <a href="{{ route('admin.home') }}"> <i class="menu-icon fa fa-home"></i> Home</a>
                         </li>
                         <li class="active">
-                            <a href="#"> <i class="menu-icon fa fa-book"></i> Book Appointments</a>
+                            <a href="#"> <i class="menu-icon fa fa-calendar"></i> Book Schedules</a>
                         </li>
                         <br>
                         <h4 class="menu-title mt-3">Fill - out forms</h4>
                         <li class="active">
-                            <a href="{{ route('users.dashboard') }}"> <i class="menu-icon fa fa-calendar"></i> Appointments</a>
+                            <a href="{{ route('users.dashboard') }}"><i class="menu-icon fa fa-file"></i> Client Form</a>
                         </li>
                     </ul>
                 @endif
