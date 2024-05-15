@@ -15,12 +15,12 @@ class UserController extends Controller
             ->where('user_role', 1)
             ->count();
         $totalAppointments = DB::table('appointments')
-            ->whereDate('app_startAt', $currentDate)
+            ->whereDate('created_at', $currentDate)
             ->count();
         $totalClients = DB::table('clients')->count();
 
         $appointments = DB::table('appointments')
-            ->whereDate('app_startAt', $currentDate)
+            ->whereDate('created_at', $currentDate)
             ->orderBy('app_id', 'asc')
             ->get();
 

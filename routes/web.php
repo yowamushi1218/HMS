@@ -23,6 +23,10 @@ Route::get('/', function () {
 
 //Dashboard
 Route::get('/admin/dashboard', [CustomController::class, 'main'])->name('admin.dashboard');
+Route::get('/admin/home', [CustomController::class, 'home'])->name('admin.home');
+Route::post('/admin/home/createAnnouncements', [CustomController::class, 'create_announcements'])->name('announcements.create');
+Route::get('delete/{ann_id}', [CustomController::class, 'delete_announcements'])->name('delete_announcements');
+
 
 //Login-Register
 Route::get('register', [CustomController::class, 'viewregistration'])->name('register');
@@ -33,6 +37,7 @@ Route::post('admin.dashboard',[CustomController::class,'loginUser'])->name('add_
 //Dashboard
 Route::post('admin.schedules',[CustomController::class,'class']);
 Route::get('admin.schedules', [CustomController::class, 'class'])->name('schedules');
+Route::get('admin.manage_schedules', [CustomController::class, 'manageSchedules'])->name('manage_schedules');
 Route::post('/appointments', [CustomController::class, 'appointment'])->name('appointments');
 
 Route::get('/admin.manage', [CustomController::class, 'manage'])->name('manage');

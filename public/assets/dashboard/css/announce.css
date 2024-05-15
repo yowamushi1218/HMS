@@ -1,0 +1,162 @@
+.container {
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+p {
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 14px;
+    opacity: .8;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 4rem;
+    margin: 0 0 0 30px;
+    color: white;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: $timeline-body-bg; /* Assuming this variable is defined elsewhere */
+}
+
+.timeline-container {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -88px;
+    top: 4px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+    background: $secondary; /* Assuming this variable is defined elsewhere */
+
+    i {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+
+.timeline-body {
+    background: $timeline-body-bg; /* Assuming this variable is defined elsewhere */
+    border-radius: $timeline-body-round; /* Assuming this variable is defined elsewhere */
+    padding: 20px 20px 15px;
+    box-shadow: $timeline-body-shadow; /* Assuming this variable is defined elsewhere */
+
+    &:before {
+        content: '';
+        background: inherit;
+        width: 20px;
+        height: 20px;
+        display: block;
+        position: absolute;
+        left: -10px;
+        transform: rotate(45deg);
+        border-radius: 0 0 0 2px;
+    }
+
+    .timeline-title {
+        margin-bottom: 1.4rem;
+
+        .badge {
+            background: $secondary; /* Assuming this variable is defined elsewhere */
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+
+    .timeline-subtitle {
+        font-weight: 300;
+        font-style: italic;
+        opacity: .4;
+        margin-top: 16px;
+        font-size: 11px;
+    }
+}
+
+.timeline-container.primary .badge,
+.timeline-container.primary .timeline-icon {
+    background: $primary !important; /* Assuming this variable is defined elsewhere */
+}
+
+.timeline-container.info .badge,
+.timeline-container.info .timeline-icon {
+    background: $info !important; /* Assuming this variable is defined elsewhere */
+}
+
+.timeline-container.success .badge,
+.timeline-container.success .timeline-icon {
+    background: $success !important; /* Assuming this variable is defined elsewhere */
+}
+
+.timeline-container.warning .badge,
+.timeline-container.warning .timeline-icon {
+    background: $warning !important; /* Assuming this variable is defined elsewhere */
+}
+
+.timeline-container.danger .badge,
+.timeline-container.danger .timeline-icon {
+    background: $danger !important; /* Assuming this variable is defined elsewhere */
+}
+
+.author {
+    font-family: inherit;
+    padding: 3em;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.author a:link,
+.author a:visited {
+    color: white;
+}
+
+.author a:hover {
+    text-decoration: none;
+}
+
+.author .btn:link,
+.author .btn:visited {
+    margin-top: 1em;
+    text-decoration: none;
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: black;
+    padding: 1.5em 2rem;
+    border-radius: 1em;
+    transition: .5s all;
+}
+
+.author .btn:hover,
+.author .btn:focus,
+.author .btn:active {
+    background-color: lighten(black, 10%);
+}

@@ -2573,3 +2573,118 @@ header .form-inline {
             background-color: #f1e0e3;
             border-color: #f1e0e3;
         }
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .list-group-item {
+            border: none;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .list-group-item strong {
+            display: inline-block;
+            width: 150px;
+        }
+
+        .badge {
+            font-size: 90%;
+        }
+
+        .timeline-card {
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 0.25rem;
+            background-color: #fff;
+            box-shadow: 0 1px 2px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+        }
+
+        .timeline-icon {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 20px;
+            z-index: 2;
+        }
+
+        .timeline-icon {
+            position: relative;
+        }
+
+        .timeline-line {
+            width: 2px;
+            height: 200%;
+            background-color: #003e96;
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+
+        .timeline-content {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .timeline-header {
+            margin-bottom: 10px;
+        }
+
+        .timeline-header h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .time {
+            color: #999;
+            font-size: 0.875rem;
+            float: right;
+        }
+
+        .timeline-body .thumbnail {
+            margin-bottom: 10px;
+        }
+
+        .timeline-body .thumbnail img {
+            border-radius: 0.25rem;
+        }
+
+        .timeline-body p {
+            margin-bottom: 10px;
+        }
+
+        .timeline-footer {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .timeline-footer .btn {
+            margin-left: 5px;
+        }
+
+
+
+

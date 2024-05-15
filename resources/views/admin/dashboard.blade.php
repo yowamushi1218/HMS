@@ -5,7 +5,7 @@
         <div class="page-header float-left">
             <div class="page-title">
                 <ol class="breadcrumb text-left">
-                    <li><h3>Home</h3></li>
+                    <li><h3>Dashboard</h3></li>
                 </ol>
             </div>
         </div>
@@ -123,13 +123,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['January', 'February', 'March', 'April', 'May'],
             datasets: [{
                 label: 'Sample Data',
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1,
-                data: [10, 20, 30, 40, 50, 60, 70]
+                data: [10, 20, 30, 40, 50, 60]
             }]
         };
         var options = {

@@ -21,6 +21,16 @@ class CustomController extends Controller
     {
         return view('admin.profile');
     }
+    public function home()
+    {
+        $announcements = DB::table('announcements')
+        ->select('*')
+        ->where('ann_active', '!=', -1)
+        ->orderBy('ann_posted_date', 'desc')
+        ->get();
+
+        return view('admin.home', compact('announcements'));
+    }
 
     public function login()
     {
@@ -37,6 +47,23 @@ class CustomController extends Controller
         return view('admin.manage');
     }
 
+    public function create_announcements(Request $request)
+    {
+        $request->validate([
+            'ann_title' => 'required|string|max:255',
+            'ann_content' => 'required|string',
+        ]);
+
+        DB::table('announcements')->insert([
+            'ann_title' => $request->input('ann_title'),
+            'ann_content' => $request->input('ann_content'),
+            'ann_active' => 1,
+            'ann_posted_date' => now(),
+            'created_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Announcement created successfully.');
+    }
     public function appointment(Request $request)
     {
         $validatedData = $request->validate([
@@ -76,6 +103,16 @@ class CustomController extends Controller
             ->get();
 
         return view('admin.schedules', compact('appointments'));
+    }
+
+    public function manageSchedules()
+    {
+        $appointments = DB::table('appointments')
+            ->select('*', DB::raw("CONCAT(app_fname, ' ', COALESCE(app_mname, ''), ' ', app_lname) AS full_name"))
+            ->orderBy('app_id', 'asc')
+            ->get();
+
+        return view('admin.manage_schedules', compact('appointments'));
     }
 
     public function clients()
@@ -305,7 +342,6 @@ class CustomController extends Controller
         }
     }
 
-    //Remove-Delete functions
     public function delete(Request $request)
     {
         $app_id = $request->input('client_id');
@@ -332,6 +368,15 @@ class CustomController extends Controller
         return redirect()->back();
     }
 
+    public function delete_announcements($ann_id)
+    {
+        DB::table('announcements')
+            ->where('ann_id', $ann_id)
+            ->update(['ann_active' => -1]);
+
+        return redirect()->route('admin.home');
+    }
+
     public function remove(Request $request)
     {
         $user = $request->input('id');
@@ -345,11 +390,14 @@ class CustomController extends Controller
         return redirect()->back();
     }
 
-
-    //Logout Functions
     public function logout(Request $request)
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function defaultCharts()
+    {
+
     }
 }
