@@ -38,7 +38,7 @@
                     <ul class="nav navbar-nav">
                         <h4 class="menu-title mt-3">Medical Track</h4>
                         <li class="active">
-                            <a href="#"> <i class="menu-icon fa fa-home"></i> Home</a>
+                            <a href="{{ route('admin.home') }}"> <i class="menu-icon fa fa-home"></i> Home</a>
                         </li>
                         <li class="active">
                             <a href="#"> <i class="menu-icon fa fa-book"></i> Book Appointments</a>

@@ -26,6 +26,7 @@ Route::get('/admin/dashboard', [CustomController::class, 'main'])->name('admin.d
 Route::get('/admin/home', [CustomController::class, 'home'])->name('admin.home');
 Route::post('/admin/home/createAnnouncements', [CustomController::class, 'create_announcements'])->name('announcements.create');
 Route::get('delete/{ann_id}', [CustomController::class, 'delete_announcements'])->name('delete_announcements');
+Route::get('/default-charts', [CustomController::class, 'defaultCharts']);
 
 
 //Login-Register

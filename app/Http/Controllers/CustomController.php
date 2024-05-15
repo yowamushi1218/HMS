@@ -223,7 +223,7 @@ class CustomController extends Controller
                     if ($user->user_role == 1) {
                         return redirect()->route('admin.dashboard');
                     } elseif ($user->user_role == 2) {
-                        return redirect()->route('users.dashboard');
+                        return redirect()->route('admin.home');
                     } else {
                         return back();
                     }
@@ -398,6 +398,37 @@ class CustomController extends Controller
 
     public function defaultCharts()
     {
+        $defaultCharts = DB::table('borrow_requests')
+            ->select(
+                'equipments.eqp_name',
+                'borrowers.bor_id',
+                DB::raw('SUM(borrow_requests.res_quantity) as total_quantity'),
+                DB::raw('SUM(equipments.eqp_quantity) as totalQuantity'),
+                DB::raw("CONCAT(borrowers.bor_first_name, ' (', borrowers.bor_code, ')') as borrower_name_code")
+            )
+            ->join('equipments', 'equipments.eqp_id', '=', 'borrow_requests.eqp_id')
+            ->join('borrowers', 'borrowers.bor_id', '=', 'borrow_requests.bor_id')
+            ->whereBetween('borrow_requests.res_date_requested')
+            ->groupBy('equipments.eqp_name', 'borrowers.bor_id', 'borrowers.bor_first_name', 'borrowers.bor_code')
+            ->orderByDesc('total_quantity')
+            ->limit(5)
+            ->get();
 
+        if ($defaultCharts->isEmpty()) {
+            return response()->json(['error' => 'No default data found'], 404);
+        }
+
+        $barChartData = $defaultCharts->map(function ($item) {
+            return [
+                'eqp_name' => $item->eqp_name,
+                'total_quantity' => $item->total_quantity,
+            ];
+        });
+
+        $data = [
+            'default_bar_chart_data' => $barChartData,
+        ];
+
+        return response()->json($data);
     }
 }

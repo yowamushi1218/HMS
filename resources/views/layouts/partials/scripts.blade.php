@@ -26,6 +26,7 @@
 <!--  Chart js -->
 <script src="{{ asset('assets/dashboard/js/init-scripts/chart-js/chartjs-init.js') }}"></script>
 <script src="{{ asset('assets/dashboard/vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     (function($) {

@@ -15,7 +15,7 @@
     <div class="content mt-3">
         <div class="animated fadeIn">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mb-2">
                     <h5><i class="fa fa-bullhorn"></i> Announcements</h5>
                     @if(Session::has('user_fname') && Session::get('user')->user_role == 1)
                         <a class="btn btn-primary btn-round float-right mb-3" href="javascript:void(0)" data-toggle="modal" data-target="#newAnnouncementModal" style="border-radius: 12px;"><i class="fa fa-comment"></i> Compose</a>
