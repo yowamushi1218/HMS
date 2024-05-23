@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Twilio\Rest\Client;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -16,11 +18,79 @@ use Illuminate\Validation\ValidationException;
 
 class CustomController extends Controller
 {
+
+    //SMS Functions
+    public function sendsms(Request $request)
+    {
+        $request->validate([
+            'app_phone' => 'required|regex:/^[0-9]{10,15}$/',
+        ]);
+
+        $phone = $request->input('app_phone');
+
+        $cleanedPhone = $this->cleanPhoneNumber($phone);
+        if (!$cleanedPhone) {
+            return back()->withErrors(['error' => 'Invalid phone number format. Please enter a valid phone number.']);
+        }
+
+        $sid = getenv("TWILIO_SID");
+        $token = getenv("TWILIO_TOKEN");
+        $senderNumber = getenv("TWILIO_PHONE");
+
+        try {
+            $twilio = new Client($sid, $token);
+
+            $message = $twilio->messages->create(
+                $cleanedPhone,
+                [
+                    "body" => "Good day! Your appointment request has been approved!. \nIf you did not receive a confirm, please email us directly to our email account.",
+                    "from" => $senderNumber
+                ]
+            );
+
+            Session::put('app_phone', $cleanedPhone);
+
+            DB::table('messages')->insert([
+                'app_phone' => $cleanedPhone,
+                'phone_verified_at' => now(),
+            ]);
+
+            return back()->with('success', 'Message has been sent successfully!');
+
+        } catch (Exception $e) {
+            Log::error('Twilio Error: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Message could not be sent. Please try again later.']);
+        }
+    }
+
+    private function cleanPhoneNumber($phoneNumber)
+    {
+        $cleanedNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+
+        if (strpos($cleanedNumber, '+') !== 0) {
+            $cleanedNumber = '+63' . ltrim($cleanedNumber, '0');
+        }
+
+        return $cleanedNumber;
+    }
+
+
     //View Functions
+    public function viewmessage()
+    {
+
+        $appointments = DB::table('appointments')
+        ->select('appointments.*', DB::raw("CONCAT(app_fname, ' ', COALESCE(app_mname, ''), ' ', app_lname) AS full_name"))
+        ->orderBy('app_id', 'asc')
+        ->get();
+
+        return view('admin.message', compact('appointments'));
+    }
     public function profile()
     {
         return view('admin.profile');
     }
+
     public function home()
     {
         $announcements = DB::table('announcements')

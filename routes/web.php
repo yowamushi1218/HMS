@@ -40,6 +40,8 @@ Route::post('admin.schedules',[CustomController::class,'class']);
 Route::get('admin.schedules', [CustomController::class, 'class'])->name('schedules');
 Route::get('admin.manage_schedules', [CustomController::class, 'manageSchedules'])->name('manage_schedules');
 Route::post('/appointments', [CustomController::class, 'appointment'])->name('appointments');
+Route::post('/admin.message',[CustomController::class,'sendsms'])->name('send.sms');
+Route::get('admin.message', [CustomController::class, 'viewmessage'])->name('admin.messages');
 
 Route::get('/admin.manage', [CustomController::class, 'manage'])->name('manage');
 Route::post('delete',[CustomController::class, 'delete'])->name('delete');

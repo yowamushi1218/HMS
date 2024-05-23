@@ -18,6 +18,9 @@
                         <li class="active">
                             <a href="{{ route('admin.dashboard') }}"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
                         </li>
+                        <li class="active">
+                            <a href="{{ route('admin.messages') }}"> <i class="menu-icon fa fa-envelope"></i>Message </a>
+                        </li>
                         <li class="menu-item-has-children dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Appointments</a>
                             <ul class="sub-menu children dropdown-menu">
